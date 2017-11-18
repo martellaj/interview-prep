@@ -8,7 +8,7 @@
             "name": "Launch",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceFolder}/dist/stack/stack",
+            "program": "${workspaceFolder}/dist/queue/queue",
             "env": {
                 "NODE_ENV": "development"
             },
