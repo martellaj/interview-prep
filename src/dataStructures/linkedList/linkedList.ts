@@ -6,6 +6,13 @@ class ListNode {
         this.data = data;
         this.next = null;
     }
+
+    /**
+     * Prints the list's data in order.
+     */
+    public print() {
+        console.log(`ListNode: ${this.data}`);
+    }
 }
 
 class List {
@@ -129,27 +136,48 @@ class List {
             }
         }
     }
+
+    /**
+     * Prints the list's data in order.
+     */
+    public print() {
+        let currentNode = this.head;
+        let string = '';
+
+        while (currentNode) {
+            string += `${currentNode.data}${currentNode.next ? ', ' : ''}`;
+            currentNode = currentNode.next;
+        }
+
+        console.log(`List: ${string}`);
+    }
 }
 
 const list = new List();
 
 list.addFirst(0);
 list.addFirst(1);
+list.print();
 // Expected: 1 => 0 => null
 
 list.addLast(2);
+list.print();
 // Expected: 1 => 0 => 2 => null
 
 list.insertAfter(3, 1);
+list.print();
 // Expected: 1 => 3 => 0 => 2 => null
 
 list.insertBefore(4, 2);
+list.print();
 // Expected: 1 => 3 => 0 => 4 => 2 => null
 
 list.insertBefore(5, 1);
+list.print();
 // Expected: 5 => 1 => 3 => 0 => 4 => 2 => null
 
 const n1 = list.find(1);
+n1.print();
 // Expected: A node with data 1 and pointing to node with data 0.
 
 const n2 = list.find(100);
