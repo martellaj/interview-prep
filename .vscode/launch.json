@@ -8,7 +8,7 @@
             "name": "Launch",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceFolder}/dist/queue/queue",
+            "program": "${workspaceFolder}/dist/hashTable/hashTable",
             "env": {
                 "NODE_ENV": "development"
             },
