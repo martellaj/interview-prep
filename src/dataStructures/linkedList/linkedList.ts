@@ -46,7 +46,7 @@ export class List {
      * and adds it to the end of the list.
      * @param {*} data
      */
-    public addLast(data: number) {
+    public addLast(data: number): ListNode {
         const newNode = new ListNode(data);
 
         if (this.tail) {
@@ -56,6 +56,8 @@ export class List {
             this.head = newNode;
             this.tail = newNode;
         }
+
+        return newNode;
     }
 
     /**
@@ -169,6 +171,117 @@ export class List {
             return oldHead;
         }
     }
+
+    /**
+     * "Maintain Linked List Tail Pointer" problem on page 43.
+     * @param node
+     */
+    public delete(node: ListNode): boolean {
+        // Ensure list isn't empty.
+        if (!this.head) {
+            return false;
+        }
+
+        /**
+         * If the target is the head, remove it by
+         * setting head to the next element. Also check
+         * if the next element is null. If so, that means
+         * we had a list with 1 element and tail needs to
+         * be changed as well.
+         */
+        if (this.head.data === node.data) {
+            this.head = node.next;
+
+            if (!this.head) {
+                this.tail = this.head;
+            }
+
+            return true;
+        }
+
+        let prevNode = this.head;
+        let currNode = prevNode.next;
+
+        /**
+         * Iterate over list. If we find the target, delete it by deleting
+         * the reference to it. If it's previous element's next value is now
+         * null, set that value as the tail. The head can't possibly be changed
+         * after this comment.
+         */
+        while (currNode) {
+            if (currNode.data === node.data) {
+                prevNode.next = currNode.next;
+
+                if (!prevNode.next) {
+                    this.tail = prevNode;
+                }
+
+                return true;
+            } else {
+                prevNode = currNode;
+                currNode = currNode.next;
+            }
+        }
+
+        /**
+         * If we haven't returned by now, it means the node to delete
+         * does not exist within the list.
+         */
+        return false;
+    }
+
+    /**
+     * "Maintain Linked List Tail Pointer" problem on page 43.
+     */
+    public insertAfter2(node: ListNode, data: number): boolean {
+        const newNode = new ListNode(data);
+
+        /**
+         * If target node is null, add item to the beginning of the list and
+         * set it as the head. Otherwise, just add node after target.
+         */
+        if (!node) {
+            newNode.next = this.head;
+            this.head = newNode;
+        } else {
+            newNode.next = node.next;
+            node.next = newNode;
+        }
+
+        /**
+         * Once new node is inserted, check its "next" value to see if it's
+         * null. If so, it means that the node is the new tail (set it as so).
+         */
+        if (!newNode.next) {
+            this.tail = newNode;
+        }
+
+        return true;
+    }
+
+    /**
+     * "Mth-to-Last Element of a Linked List" problem on page 50.
+     * @param m
+     */
+    public mthToLast(m: number): ListNode {
+        let mPointer = this.head;
+        let pointer = this.head;
+
+        for (let i = 0; i < m; i++) {
+            if (!mPointer.next) {
+                return null;
+            } else {
+                mPointer = mPointer.next;
+            }
+        }
+
+        while (mPointer.next) {
+            mPointer = mPointer.next;
+            pointer = pointer.next;
+        }
+
+        return pointer;
+    }
 }
 
 /**
@@ -177,31 +290,18 @@ export class List {
 function testList() {
     const list = new List();
 
-    list.addFirst(0);
-    list.addFirst(1);
-    list.print();
-    // Expected: 1 => 0 => null
-
+    list.addLast(0);
+    list.addLast(1);
     list.addLast(2);
+    list.addLast(3);
+    list.addLast(4);
+    list.addLast(5);
+
     list.print();
-    // Expected: 1 => 0 => 2 => null
+    const m = 5;
+    console.log(`Target: ${list.mthToLast(m).data}`);
 
-    list.insertAfter(3, 1);
-    list.print();
-    // Expected: 1 => 3 => 0 => 2 => null
-
-    list.insertBefore(4, 2);
-    list.print();
-    // Expected: 1 => 3 => 0 => 4 => 2 => null
-
-    list.insertBefore(5, 1);
-    list.print();
-    // Expected: 5 => 1 => 3 => 0 => 4 => 2 => null
-
-    const n1 = list.find(1);
-    n1.print();
-    // Expected: A node with data 1 and pointing to node with data 0.
-
-    const n2 = list.find(100);
-    // Expected: null
+    debugger;
 }
+
+testList();
