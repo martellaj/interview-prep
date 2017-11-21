@@ -1,6 +1,6 @@
 import { List, ListNode } from '../linkedList/linkedList';
 
-class Stack<T> {
+export class Stack<T> {
     public top: ListNode<T>;
 
     private _stack: List<T>;
@@ -77,5 +77,3 @@ function testStack() {
 
     debugger;
 }
-
-testStack();
