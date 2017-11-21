@@ -15,7 +15,7 @@ export class Stack<T> {
      */
     public isEmpty(): boolean {
         const _isEmpty = this.top === null;
-        console.log(`Stack is empty: ${_isEmpty}`);
+        // console.log(`Stack is empty: ${_isEmpty}`);
         return _isEmpty;
     }
 
