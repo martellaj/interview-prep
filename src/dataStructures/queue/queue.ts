@@ -1,7 +1,7 @@
 import { List, ListNode } from '../linkedList/linkedList';
 
-class Queue {
-    private _queue: List;
+export class Queue<T> {
+    private _queue: List<T>;
 
     constructor() {
         this._queue = new List();
@@ -11,14 +11,14 @@ class Queue {
      * Adds a new item to the queue.
      * @param data
      */
-    public enqueue(data: number) {
+    public enqueue(data: T) {
         this._queue.addLast(data);
     }
 
     /**
      * Removes the oldest item from the queue.
      */
-    public dequeue(): ListNode {
+    public dequeue(): ListNode<T> {
         const dequeued = this._queue.removeFirst();
 
         if (dequeued) {

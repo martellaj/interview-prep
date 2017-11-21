@@ -1,9 +1,9 @@
 import { List, ListNode } from '../linkedList/linkedList';
 
-class Stack {
-    public top: ListNode;
+class Stack<T> {
+    public top: ListNode<T>;
 
-    private _stack: List;
+    private _stack: List<T>;
 
     constructor() {
         this.top = null;
@@ -23,7 +23,7 @@ class Stack {
      * Gets the value of the item on top of the stack.
      * If the stack is empty, null is returned.
      */
-    public peek(): number {
+    public peek(): T {
         const top = this.top;
 
         if (top) {
@@ -38,7 +38,7 @@ class Stack {
      * Adds a new node to the top of the stack.
      * @param data
      */
-    public push(data: number) {
+    public push(data: T) {
         const newTop = this._stack.addFirst(data);
         this.top = newTop;
     }
@@ -46,7 +46,7 @@ class Stack {
     /**
      * Pops the top off the stack.
      */
-    public pop(): ListNode {
+    public pop(): ListNode<T> {
         const top = this.top;
 
         if (top) {

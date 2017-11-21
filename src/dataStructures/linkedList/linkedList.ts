@@ -1,8 +1,8 @@
-export class ListNode {
-    public data: number;
-    public next: ListNode;
+export class ListNode<T> {
+    public data: T;
+    public next: ListNode<T>;
 
-    constructor(data: number) {
+    constructor(data: T) {
         this.data = data;
         this.next = null;
     }
@@ -15,9 +15,9 @@ export class ListNode {
     }
 }
 
-export class List {
-    public head: ListNode;
-    public tail: ListNode;
+export class List<T> {
+    public head: ListNode<T>;
+    public tail: ListNode<T>;
 
     constructor() {
         this.head = null;
@@ -29,7 +29,7 @@ export class List {
      * and adds it to the beginning of the List.
      * @param {*} data
      */
-    public addFirst(data: number): ListNode {
+    public addFirst(data: T): ListNode<T> {
         const newNode = new ListNode(data);
         newNode.next = this.head;
         this.head = newNode;
@@ -46,7 +46,7 @@ export class List {
      * and adds it to the end of the list.
      * @param {*} data
      */
-    public addLast(data: number): ListNode {
+    public addLast(data: T): ListNode<T> {
         const newNode = new ListNode(data);
 
         if (this.tail) {
@@ -67,7 +67,7 @@ export class List {
      * list.
      * @param {*} data
      */
-    public find(data: number) {
+    public find(data: T) {
         let currentNode = this.head;
 
         while (currentNode.next) {
@@ -89,7 +89,7 @@ export class List {
      * @param {*} data
      * @param {*} target
      */
-    public insertAfter(data: number, target: number) {
+    public insertAfter(data: T, target: T) {
         const targetNode = this.find(target);
 
         if (targetNode) {
@@ -115,8 +115,8 @@ export class List {
      * @param {*} data
      * @param {*} target
      */
-    public insertBefore(data: number, target: number) {
-        let prevNode: ListNode = null;
+    public insertBefore(data: T, target: T) {
+        let prevNode: ListNode<T> = null;
         let currentNode = this.head;
         let inserted = false;
 
@@ -159,7 +159,7 @@ export class List {
     /**
      * Removes the first item in the list.
      */
-    public removeFirst(): ListNode {
+    public removeFirst(): ListNode<T> {
         if (this.head) {
             const oldHead = this.head;
             this.head = oldHead.next;
@@ -176,7 +176,7 @@ export class List {
      * "Maintain Linked List Tail Pointer" problem on page 43.
      * @param node
      */
-    public delete(node: ListNode): boolean {
+    public delete(node: ListNode<T>): boolean {
         // Ensure list isn't empty.
         if (!this.head) {
             return false;
@@ -233,7 +233,7 @@ export class List {
     /**
      * "Maintain Linked List Tail Pointer" problem on page 43.
      */
-    public insertAfter2(node: ListNode, data: number): boolean {
+    public insertAfter2(node: ListNode<T>, data: T): boolean {
         const newNode = new ListNode(data);
 
         /**
@@ -263,7 +263,7 @@ export class List {
      * "Mth-to-Last Element of a Linked List" problem on page 50.
      * @param m
      */
-    public mthToLast(m: number): ListNode {
+    public mthToLast(m: number): ListNode<T> {
         let mPointer = this.head;
         let pointer = this.head;
 
