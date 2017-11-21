@@ -14,5 +14,8 @@
   "bugs": {
     "url": "https://github.com/martellaj/interview-prep/issues"
   },
-  "homepage": "https://github.com/martellaj/interview-prep#readme"
+  "homepage": "https://github.com/martellaj/interview-prep#readme",
+  "dependencies": {
+    "queue-fifo": "^0.2.3"
+  }
 }

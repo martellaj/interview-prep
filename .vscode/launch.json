@@ -8,7 +8,7 @@
             "name": "Launch",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceFolder}/dist/hashTable/hashTable",
+            "program": "${workspaceFolder}/dist/binarySearchTree/binarySearchTree",
             "env": {
                 "NODE_ENV": "development"
             },
