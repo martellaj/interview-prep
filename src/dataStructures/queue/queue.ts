@@ -42,6 +42,10 @@ export class Queue<T> {
         }
     }
 
+    public isEmpty() {
+        return this._queue.isEmpty();
+    }
+
     /**
      * Prints current state of queue.
      */
@@ -75,5 +79,3 @@ function testQueue() {
 
     debugger;
 }
-
-testQueue();

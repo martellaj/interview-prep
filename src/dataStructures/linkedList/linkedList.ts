@@ -24,6 +24,10 @@ export class List<T> {
         this.tail = null;
     }
 
+    public isEmpty(): boolean {
+        return this.head === null;
+    }
+
     /**
      * Creates a ListNode with the given data value
      * and adds it to the beginning of the List.
@@ -303,5 +307,3 @@ function testList() {
 
     debugger;
 }
-
-testList();
