@@ -1,5 +1,5 @@
 declare module 'queue-fifo' {
-    export default class Queue {
+    class Queue {
         constructor();
         isEmpty(): boolean;
         size(): number;
@@ -8,4 +8,6 @@ declare module 'queue-fifo' {
         dequeue(): any;
         peek(): any;
     }
+
+    export = Queue;
 }
