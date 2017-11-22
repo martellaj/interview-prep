@@ -286,6 +286,44 @@ export class List<T> {
 
         return pointer;
     }
+
+    /**
+     * This function assumes the List is sorted.
+     */
+    public insertSorted(data: T): boolean {
+        const newNode = new ListNode(data);
+
+        // No head / smallest number.
+        if (!this.head) {
+            this.head = newNode;
+            return true;
+        } else {
+            if (newNode.data < this.head.data) {
+                newNode.next = this.head;
+                this.head = newNode;
+                return true;
+            }
+        }
+
+        // Insert between head and tail.
+        let prevNode = this.head;
+        let currNode = this.head.next;
+        while (currNode) {
+            if (prevNode.data < data && data <= currNode.data) {
+                newNode.next = prevNode.next;
+                prevNode.next = newNode;
+                return true;
+            }
+
+            prevNode = currNode;
+            currNode = currNode.next;
+        }
+
+        // If we get here, it's the biggest item.
+        prevNode.next = newNode;
+        this.tail = newNode;
+        return true;
+    }
 }
 
 /**
