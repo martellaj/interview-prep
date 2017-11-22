@@ -8,7 +8,7 @@
             "name": "Launch",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceFolder}/dist/binarySearchTree/binarySearchTree",
+            "program": "${workspaceFolder}/dist/sorting",
             "env": {
                 "NODE_ENV": "development"
             },
