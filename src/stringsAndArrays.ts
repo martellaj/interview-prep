@@ -77,4 +77,60 @@ function reverseWords(string: string): string {
     return reversedString;
 }
 
-reverseWords('Do or do not, there is no try.');
+function isAlpha(input: string): boolean {
+    return (input >= 'a' && input <= 'z') ||
+        (input >= 'A' && input <= 'Z');
+}
+
+function reverseNotSpecial(input: string): string {
+    let reversed = [];
+    let rIndex = 0;
+
+    for (let i = input.length - 1; i >= 0; i--) {
+        if (isAlpha(input[i])) {
+            let inserted = false;
+            while (!inserted) {
+                if (!reversed[rIndex]) {
+                    reversed[rIndex] = input[i];
+                    inserted = true;
+                }
+
+                rIndex++;
+            }
+        } else {
+            // Bad: reversed[i] = input[i];
+
+            /**
+             * Instead of just putting it in the spot here,
+             * we'd have to shift elements in "reversed" to the right
+             * to make room for special character if the spot isn't
+             * empty.
+             */
+        }
+    }
+
+    return reversed.join('');
+}
+
+function binarySearchArray(array: number[], target: number): number {
+    let start = 0;
+    let end = array.length - 1;
+
+    while (start <= end) {
+        const middle = Math.floor((start + end) / 2);
+        const middleVal = array[middle];
+
+        if (target === middleVal) {
+            return middle;
+        } else if (target < middleVal) {
+            end = middle - 1;
+        } else if (target > middleVal) {
+            start = middle + 1;
+        }
+    }
+
+    return null;
+}
+
+const array = [1, 2, 3, 4, 5, 6];
+console.log(binarySearchArray(array, 4));
