@@ -160,6 +160,18 @@ class BinarySearchTree {
         }
     }
 
+    public getMinDepth(): number {
+        return this._getMinDepth(this.root);
+    }
+
+    private _getMinDepth(node: BinarySearchTreeNode): number {
+        if (!node) {
+            return 0;
+        }
+
+        return 1 + Math.min(this._getMinDepth(node.left), this._getMinDepth(node.right));
+    }
+
     public preorder() {
         this._preorder(this.root);
     }
@@ -210,18 +222,12 @@ class BinarySearchTree {
 function testBst() {
     const tree = new BinarySearchTree();
 
-    tree.insert(100);
-    tree.insert(50);
-    tree.insert(25);
-    tree.insert(75);
-    tree.insert(150);
-    tree.insert(125);
-    tree.insert(175);
-    tree.insert(110);
+    tree.insert(10);
+    tree.insert(5);
+    tree.insert(2);
+    tree.insert(7);
 
-    tree.lca(75, 175);
-
-    // debugger;
+    console.log(tree.getMinDepth());
 }
 
 testBst();
