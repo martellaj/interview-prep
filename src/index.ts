@@ -1,4 +1,6 @@
-import { mostFrequent } from './stringsAndArrays';
+import { sumPairs } from './stringsAndArrays';
 
-const array = [0, 0, 1, 1, 1, 2];
-console.log(mostFrequent(array));
+const array = [6, 2, 10, 8, 10, -2, 12, 1, 9, 4];
+sumPairs(array);
+
+debugger;

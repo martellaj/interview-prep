@@ -167,3 +167,60 @@ export function mostFrequent(array: number[]): number {
 
     return max;
 }
+
+/**
+ * Prints pairs within the array who have a sum of 10.
+ * @param array
+ */
+export function sumPairs(array: number[]) {
+    /**
+     * Test cases
+     * ==========
+     * - An empty array
+     * - An array with 1 element
+     * - An array with 1 "5"
+     * - An array with multiple "5"s
+     * - An array with [0, 10]
+     * - An array with a negative number as part of a pair (i.e. [-2, 12])
+     */
+
+    // Return if input hasn't been initialized or has a length less than 2.
+    if (!array || array.length < 2) {
+        return;
+    }
+
+    let map = {};
+    let printedSame = false;
+
+    for (let i = 0; i < array.length; i++) {
+        const curr = array[i];
+        const pair = 10 - curr;
+
+        // Special case for number who is a pair with itself (i.e. 5 in this case).
+        if (curr === pair) {
+            // If we've already hit number and haven't printed the pair, do so.
+            if (map[curr] && !printedSame) {
+                console.log(`${curr}, ${pair}`);
+                printedSame = true;
+                continue;
+            }
+
+            // If we didn't print on this loop, mark as seen and move on.
+            map[curr] = true;
+            continue;
+        }
+
+        // If we've already processed element, move on.
+        if (map[curr]) {
+            continue;
+        }
+
+        // If we've seen element's buddy, print the pair.
+        if (map[pair]) {
+            console.log(`${curr}, ${pair}`);
+        }
+
+        // Mark current element as seen.
+        map[curr] = true;
+    }
+}
