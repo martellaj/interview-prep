@@ -24,6 +24,20 @@ export class List<T> {
         this.tail = null;
     }
 
+    /**
+     * Creates a list to test with.
+     * @param numberOfElements
+     */
+    public static createList(numberOfElements: number): List<number> {
+        const list = new List<number>();
+
+        for (let i = 0; i < numberOfElements; i++) {
+            list.addLast(i);
+        }
+
+        return list;
+    }
+
     public isEmpty(): boolean {
         return this.head === null;
     }
@@ -324,24 +338,44 @@ export class List<T> {
         this.tail = newNode;
         return true;
     }
-}
 
-/**
- * Creates a list and does stuff to it.
- */
-function testList() {
-    const list = new List();
+    /**
+     * Removes the node with the data value matching the input.
+     * @param data
+     */
+    public remove(data: T): boolean {
+        let prevNode = null;
+        let currNode = this.head;
 
-    list.addLast(0);
-    list.addLast(1);
-    list.addLast(2);
-    list.addLast(3);
-    list.addLast(4);
-    list.addLast(5);
+        if (!currNode) {
+            return false;
+        }
 
-    list.print();
-    const m = 5;
-    console.log(`Target: ${list.mthToLast(m).data}`);
+        if (currNode.data === data) {
+            this.head = currNode.next;
 
-    debugger;
+            if (currNode === this.tail) {
+                this.tail = currNode.next;
+            }
+
+            return true;
+        }
+
+        while (currNode) {
+            if (currNode.data === data) {
+                prevNode.next = currNode.next;
+
+                if (currNode === this.tail) {
+                    this.tail = prevNode;
+                }
+
+                return true;
+            }
+
+            prevNode = currNode;
+            currNode = currNode.next;
+        }
+
+        return false;
+    }
 }
