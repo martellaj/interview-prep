@@ -8,7 +8,7 @@
             "name": "Launch",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceFolder}/dist/geeksForGeeks",
+            "program": "${workspaceFolder}/dist/index",
             "env": {
                 "NODE_ENV": "development"
             },

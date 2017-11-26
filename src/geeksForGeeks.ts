@@ -1,4 +1,4 @@
-import { List } from './dataStructures/linkedList/linkedList';
+import { List } from './dataStructures/linkedList';
 
 function insertSortedLinkedList() {
     const list = new List<number>();
