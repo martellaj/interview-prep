@@ -1,3 +1,13 @@
+export function createArray(numberOfElements: number): number[] {
+    const array = [];
+
+    for (let i = 0; i < numberOfElements; i++) {
+        array.push(i);
+    }
+
+    return array;
+}
+
 /**
  * Returns the first nonrepated character in the input string.
  * Problem details on page 91.
@@ -132,5 +142,28 @@ function binarySearchArray(array: number[], target: number): number {
     return null;
 }
 
-const array = [1, 2, 3, 4, 5, 6];
-console.log(binarySearchArray(array, 4));
+/**
+ * Returns the most frequent integer in an integer array.
+ * @param array
+ */
+export function mostFrequent(array: number[]): number {
+    let counts = {};
+    let max = null;
+
+    if (array.length === 0) {
+        return null;
+    } else if (array.length === 1) {
+        return array[0];
+    } else {
+        counts[array[0]] = 1;
+        max = array[0];
+    }
+
+    for (let i = 1; i < array.length; i++) {
+        const currElement = array[i];
+        counts[currElement] ? counts[currElement]++ : counts[currElement] = 1;
+        counts[max] < counts[currElement] ? max = currElement : null;
+    }
+
+    return max;
+}
