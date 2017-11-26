@@ -1,6 +1,12 @@
-import { sumPairs } from './stringsAndArrays';
+import { BinarySearchTree, BinarySearchTreeNode } from './dataStructures/binarySearchTree';
 
-const array = [6, 2, 10, 8, 10, -2, 12, 1, 9, 4];
-sumPairs(array);
+const tree = new BinarySearchTree();
+tree.insert(10);
+tree.insert(2);
+
+const node = new BinarySearchTreeNode(5);
+tree.root.right = node;
+
+console.log(tree.isBst());
 
 debugger;

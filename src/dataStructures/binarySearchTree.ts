@@ -2,7 +2,7 @@
 import { Stack } from './stack';
 import Queue = require('queue-fifo');
 
-class BinarySearchTreeNode {
+export class BinarySearchTreeNode {
     public data: number;
     public left: BinarySearchTreeNode;
     public right: BinarySearchTreeNode;
@@ -19,7 +19,7 @@ interface BSTFindResult {
     parent: BinarySearchTreeNode;
 }
 
-class BinarySearchTree {
+export class BinarySearchTree {
     public root: BinarySearchTreeNode;
 
     constructor() {
@@ -217,6 +217,48 @@ class BinarySearchTree {
             return node.data;
         }
     }
+
+    /**
+     * Determines if the tree is a BST.
+     */
+    public isBst() {
+        /**
+         * Test cases
+         * ==========
+         * - An empty tree
+         * - A tree with a root without children
+         * - A tree with with a root with just a left child
+         * - A tree with with a root with just a right child
+         * - A fuller BST
+         * - A tree that isn't a BST
+         */
+
+        const queue = new Queue();
+
+        if (!this.root) {
+            return true;
+        } else {
+            queue.enqueue(this.root);
+        }
+
+        while (!queue.isEmpty()) {
+            const curr = queue.dequeue();
+
+            if ((curr.left && curr.left.data < curr.data) || !curr.left) {
+                curr.left ? queue.enqueue(curr.left) : null;
+            } else {
+                return false;
+            }
+
+            if ((curr.right && curr.right.data > curr.data) || !curr.right) {
+                curr.right ? queue.enqueue(curr.right) : null;
+            } else {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
 
 function testBst() {
@@ -229,5 +271,3 @@ function testBst() {
 
     console.log(tree.getMinDepth());
 }
-
-testBst();
