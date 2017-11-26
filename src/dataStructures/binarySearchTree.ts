@@ -1,5 +1,5 @@
-// import { Queue } from '../queue/queue';
-import { Stack } from '../stack/stack';
+// import { Queue } from './queue';
+import { Stack } from './stack';
 import Queue = require('queue-fifo');
 
 class BinarySearchTreeNode {
