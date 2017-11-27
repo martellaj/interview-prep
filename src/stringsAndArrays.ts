@@ -224,3 +224,54 @@ export function sumPairs(array: number[]) {
         map[curr] = true;
     }
 }
+
+/**
+ * Returns the length of the largest substring of the input string.
+ *
+ * Problem: https://leetcode.com/problems/longest-substring-without-
+ * repeating-characters/
+ *
+ * @param string
+ */
+export function longestSubstring(string: string): number {
+    let maxString = '';
+    let currString = '';
+
+    for (let i = 0; i < string.length; i++) {
+        if (currString.indexOf(string[i]) === -1) {
+            currString += string[i];
+        } else {
+            if (currString.length > maxString.length) {
+                maxString = currString;
+            }
+
+            /**
+             * Originally just ended the currString here, and started
+             * a new string when we hit a dupe. I missed the fact that
+             * just because we hit a dupe, it doesn't mean part of the
+             * currString can be used still.
+             */
+            let salvagableSubstring = '';
+            for (let j = currString.length - 1; j >= 0; j--) {
+                if (currString[j] !== string[i]) {
+                    salvagableSubstring += currString[j];
+                } else {
+                    break;
+                }
+            }
+
+            const foo = salvagableSubstring.split('');
+            const bar = foo.reverse();
+            const baz = bar.join('');
+
+            currString = baz + string[i];
+        }
+    }
+
+    // Check last substring we made.
+    if (currString.length > maxString.length) {
+        maxString = currString;
+    }
+
+    return maxString.length;
+}

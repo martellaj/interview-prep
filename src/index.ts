@@ -1,6 +1,9 @@
-import { BinarySearchTree } from './dataStructures/binarySearchTree';
+import { longestSubstring } from './stringsAndArrays';
 
-const tree = BinarySearchTree.create();
-console.log(tree.distance(8, 20));
+console.log(longestSubstring('abcabcbb'));
+console.log(longestSubstring('bbb'));
+console.log(longestSubstring('pwwkew'));
+console.log(longestSubstring('j'));
+console.log(longestSubstring('dvdf'));
 
 debugger;
