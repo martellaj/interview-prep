@@ -26,6 +26,30 @@ export class BinarySearchTree {
         this.root = null;
     }
 
+    public static create(): BinarySearchTree {
+        const tree = new BinarySearchTree();
+
+        tree.insert(10);
+        tree.insert(5);
+        tree.insert(15);
+        tree.insert(4);
+        tree.insert(7);
+        tree.insert(11);
+        tree.insert(25);
+        tree.insert(3);
+        tree.insert(6);
+        tree.insert(8);
+        tree.insert(14);
+        tree.insert(16);
+        tree.insert(12);
+        tree.insert(20);
+        tree.insert(18);
+        tree.insert(22);
+        tree.insert(17);
+
+        return tree;
+    }
+
     public insert(data: number) {
         const newNode = new BinarySearchTreeNode(data);
 
@@ -258,6 +282,81 @@ export class BinarySearchTree {
         }
 
         return true;
+    }
+
+    /**
+     * Returns the distance between 2 nodes.
+     * @param a
+     * @param b
+     */
+    public distance(a: number, b: number): number {
+        /**
+         * Assumptions
+         * ===========
+         * - a < b
+         */
+
+        // If no root, return.
+        if (!this.root) {
+            return -1;
+        }
+
+        let lca;
+        let curr = this.root;
+
+        // Find LCA between target nodes.
+        while (curr && !lca) {
+            if (a < curr.data && b < curr.data) {
+                curr = curr.left;
+            } else if (a > curr.data && b > curr.data) {
+                curr = curr.right;
+            } else {
+                lca = curr;
+            }
+        }
+
+        // If no LCA found, return.
+        if (!lca) {
+            return -1;
+        }
+
+        let lFound = false;
+        let lCount = 0;
+        curr = lca;
+        while (curr && !lFound) {
+            if (a < curr.data) {
+                curr = curr.left;
+            } else if (a > curr.data) {
+                curr = curr.right;
+            } else {
+                lFound = true;
+                break;
+            }
+
+            lCount++;
+        }
+
+        let rFound = false;
+        let rCount = 0;
+        curr = lca;
+        while (curr && !rFound) {
+            if (b < curr.data) {
+                curr = curr.left;
+            } else if (b > curr.data) {
+                curr = curr.right;
+            } else {
+                rFound = true;
+                break;
+            }
+
+            rCount++;
+        }
+
+        if (lFound && rFound) {
+            return lCount + rCount;
+        } else {
+            return -1;
+        }
     }
 }
 
