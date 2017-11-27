@@ -276,6 +276,10 @@ export function longestSubstring(string: string): number {
     return maxString.length;
 }
 
+/**
+ * May or may not be actually correct.
+ * @param number
+ */
 export function isPalindrome(number: number): boolean {
     const string = number.toString();
 
