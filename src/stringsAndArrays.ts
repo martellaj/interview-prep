@@ -1,3 +1,5 @@
+import { Queue } from './dataStructures/queue';
+
 export function createArray(numberOfElements: number): number[] {
     const array = [];
 
@@ -294,4 +296,28 @@ export function isPalindrome(number: number): boolean {
     }
 
     return true;
+}
+
+/**
+ * Prints out letter combinations of a phone number.
+ * @param digits
+ */
+export function letterCombinations(digits: string): void {
+    const mappings = ['0', '1', 'abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz'];
+
+    const queue = new Queue<string>();
+    queue.enqueue('');
+
+    for (let i = 0; i < digits.length; i++) {
+        const digit = parseInt(digits[i]);
+
+        while (queue.peek().length === i) {
+            const curr = queue.dequeue().data;
+            for (let j = 0; j < mappings[digit].length; j++) {
+                queue.enqueue(curr + mappings[digit][j]);
+            }
+        }
+    }
+
+    queue.print();
 }
