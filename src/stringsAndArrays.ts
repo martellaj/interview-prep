@@ -275,3 +275,19 @@ export function longestSubstring(string: string): number {
 
     return maxString.length;
 }
+
+export function isPalindrome(number: number): boolean {
+    const string = number.toString();
+
+    if (string[0] === '-') {
+        return false;
+    }
+
+    for (let i = 0; i < string.length / 2; i++) {
+        if (string[i] !== string[string.length - 1 - i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
