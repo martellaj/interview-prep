@@ -52,6 +52,13 @@ export class Queue<T> {
     public print() {
         this._queue.print();
     }
+
+    /**
+     * Returns the value of the item at the beginning of the queue.
+     */
+    public peek(): T {
+        return this._queue.head ? this._queue.head.data : null;
+    }
 }
 
 function testQueue() {
