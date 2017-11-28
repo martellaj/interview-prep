@@ -321,3 +321,23 @@ export function letterCombinations(digits: string): void {
 
     queue.print();
 }
+
+export function uniqueElement(array: number[]): number {
+    let map = [];
+
+    for (let i = 0; i < array.length; i++) {
+        const curr = array[i];
+        if (!map[curr]) {
+            map[curr] = 1;
+        } else {
+            map[curr] = map[curr] + 1;
+        }
+    }
+
+    for (let i = 0; i < array.length; i++) {
+        const curr = array[i];
+        if (map[curr] === 1) {
+            return curr;
+        }
+    }
+}
