@@ -341,3 +341,7 @@ export function uniqueElement(array: number[]): number {
         }
     }
 }
+
+export function sort(string: string): string {
+    return string.split('').sort((a, b) => a.localeCompare(b)).join('');
+}
